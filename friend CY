@@ -1,0 +1,108 @@
+1. 
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Employee {
+    string name;
+    int number;
+    string designation;
+    string department;
+    double basicSalary;
+    double DA;
+    double HRA;
+    double PF;
+    double totalSalary;
+
+    void calculateTotalSalary() {
+        totalSalary = basicSalary + DA + HRA + PF;
+    }
+};
+
+int main() {
+    Employee employees[10];
+    int employeeNumber;
+
+    for (int i = 0; i < 10; i++) {
+        cin >> employees[i].name;
+        cin >> employees[i].number;
+        cin >> employees[i].designation;
+        cin >> employees[i].department;
+        cin >> employees[i].basicSalary;
+        cin >> employees[i].DA;
+        cin >> employees[i].HRA;
+        cin >> employees[i].PF;
+
+        employees[i].calculateTotalSalary();
+    }
+
+    cin >> employeeNumber;
+
+    bool found = false;
+    for (int i = 0; i < 10; i++) {
+        if (employees[i].number == employeeNumber) {
+            cout<<"SALARY SLIP"<<endl;
+            cout << "Employee Name: " << employees[i].name << endl;
+            cout << "Employee Total Salary: " << employees[i].totalSalary << endl;
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        cout << "Employee not found" << endl;
+    }
+
+    return 0;
+}
+
+
+2.
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct DEPT {
+    string name;
+    int emp_id;
+    int years_of_experience;
+    double basic_salary;
+
+    void updateSalary() {
+        if (years_of_experience >= 10) {
+            basic_salary += basic_salary * 0.10;
+        } else if (years_of_experience >= 5 && years_of_experience <= 9) {
+            basic_salary += basic_salary * 0.05;
+        } else if (years_of_experience >= 1 && years_of_experience <= 4) {
+            basic_salary += basic_salary * 0.02;
+        }
+    }
+
+    void printDetails() {
+        cout << "Employee Name : " << name << endl;
+        cout << "Employee Id : " << emp_id << endl;
+        cout << "years of experience : " << years_of_experience << endl;
+        cout << "salary : " << static_cast<int>(basic_salary) << endl;
+    }
+};
+
+int main() {
+    int n;
+    cin >> n;
+    DEPT employees[n];
+
+    for (int i = 0; i < n; i++) {
+        cin >> employees[i].name >> employees[i].emp_id >> employees[i].years_of_experience >> employees[i].basic_salary;
+        employees[i].updateSalary();
+    }
+
+    for (int i = 0; i < n; i++) {
+        employees[i].printDetails();
+        cout << endl;
+    }
+
+    return 0;
+}
+
