@@ -1,0 +1,134 @@
+1.
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
+using namespace std;
+
+class ItemType {
+private:
+    string name;
+    double deposit;
+    double costPerDay;
+
+public:
+    // Default Constructor
+    ItemType() : name(""), deposit(0), costPerDay(0) {}
+
+    // Parameterized Constructor
+    ItemType(string n, double d, double c) : name(n), deposit(d), costPerDay(c) {}
+
+    // Getters
+    string getName() const { return name; }
+    double getDeposit() const { return deposit; }
+    double getCostPerDay() const { return costPerDay; }
+
+    // Display function
+    void display() const {
+        cout << name << " " << fixed << setprecision(1) << deposit << " " << costPerDay << endl;
+    }
+};
+
+class Main {
+public:
+    static void sortAndDisplay(vector<ItemType>& items) {
+        // Sorting using lambda expression based on costPerDay
+        sort(items.begin(), items.end(), [](const ItemType& a, const ItemType& b) {
+            return a.getCostPerDay() < b.getCostPerDay();
+        });
+
+        // Display sorted details
+        for (const auto& item : items) {
+            item.display();
+        }
+    }
+};
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<ItemType> items;
+
+    for (int i = 0; i < n; ++i) {
+        string name;
+        double deposit, costPerDay;
+        cin >> name >> deposit >> costPerDay;
+        items.emplace_back(name, deposit, costPerDay);
+    }
+
+    Main::sortAndDisplay(items);
+
+    return 0;
+}
+
+2.
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
+using namespace std;
+
+class Hall {
+private:
+    string name;
+    double costPerDay;
+    string owner;
+
+public:
+    // Default Constructor
+    Hall() : name(""), costPerDay(0.0), owner("") {}
+
+    // Parameterized Constructor
+    Hall(string n, double c, string o) : name(n), costPerDay(c), owner(o) {}
+
+    // Getters
+    string getName() const { return name; }
+    double getCostPerDay() const { return costPerDay; }
+    string getOwner() const { return owner; }
+
+    // Display function
+    void display() const {
+        cout << name << " " << fixed << setprecision(1) << costPerDay << " " << owner << endl;
+    }
+};
+
+class Main {
+public:
+    static void sortAndDisplay(vector<Hall>& halls) {
+        // Sorting using lambda expression based on owner
+        sort(halls.begin(), halls.end(), [](const Hall& a, const Hall& b) {
+            return a.getOwner() < b.getOwner();
+        });
+
+        // Display sorted details
+        for (const auto& hall : halls) {
+            hall.display();
+        }
+    }
+};
+
+int main() {
+    int n;
+    cin >> n;
+    cin.ignore(); // To handle the newline after `n`
+
+    vector<Hall> halls;
+
+    for (int i = 0; i < n; ++i) {
+        string name, owner;
+        double costPerDay;
+        getline(cin, name);
+        cin >> costPerDay;
+        cin.ignore(); // To handle the newline before the owner
+        getline(cin, owner);
+        halls.emplace_back(name, costPerDay, owner);
+    }
+
+    Main::sortAndDisplay(halls);
+
+    return 0;
+}
+
