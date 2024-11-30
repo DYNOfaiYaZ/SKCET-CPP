@@ -1,0 +1,98 @@
+1.
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class Calculations {
+public:
+    virtual double amount() = 0;
+    virtual double time() = 0;
+    virtual void display() = 0;
+};
+
+class Scooty : public Calculations {
+public:
+    double distance;
+
+    Scooty(double d) : distance(d) {}
+
+    double amount() override {
+        double pricePerKm = 100;
+        return distance * pricePerKm * 0.95;
+    }
+
+    double time() override {
+        double speed = 40;
+        return distance / speed;
+    }
+
+    void display() override {
+        cout << "Scooty" << endl;
+        cout << "Time Taken(in hours) : "<< time() << endl;
+        cout << "Amount : " << static_cast<int>(amount());
+    }
+};
+
+class Bike : public Calculations {
+public:
+    double distance;
+
+    Bike(double d) : distance(d) {}
+
+    double amount() override {
+        double pricePerKm = 150;
+        return distance * pricePerKm * 0.90; 
+    }
+
+    double time() override {
+        double speed = 60;
+        return distance / speed;
+    }
+
+    void display() override {
+        cout << "Bike" << endl;
+        cout << "Time Taken(in hours) : "<< time() << endl;
+        cout << "Amount : " << static_cast<int>(amount());
+    }
+};
+
+class Car : public Calculations {
+public:
+    double distance;
+
+    Car(double d) : distance(d) {}
+
+    double amount() override {
+        double pricePerKm = 200;
+        return distance * pricePerKm * 0.80; 
+    }
+
+    double time() override {
+        double speed = 80;
+        return distance / speed;
+    }
+
+    void display() override {
+        cout << "Car" << endl;
+        cout << "Time Taken(in hours) : " << time() << endl;
+        cout << "Amount : " << static_cast<int>(amount());
+    }
+};
+
+int main() {
+    double distance;
+    cin >> distance;
+
+    Scooty scooty(distance);
+    Bike bike(distance);
+    Car car(distance);
+
+    scooty.display();
+    cout << endl;
+    bike.display();
+    cout << endl;
+    car.display();
+
+    return 0;
+}
