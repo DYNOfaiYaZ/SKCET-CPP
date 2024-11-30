@@ -1,0 +1,72 @@
+1.
+  #include <iostream>
+#include <vector>
+using namespace std;
+
+class Doctor {
+public:
+    int id;
+    string name;
+    int salary;
+
+    Doctor() : id(0), name(""), salary(0) {}
+
+    Doctor(int id, string name, int salary) : id(id), name(name), salary(salary) {}
+
+    void display() {
+        cout << id << " " << name << " " << salary << endl;
+    }
+};
+
+int main() {
+    int N;
+    cin >> N;
+    vector<Doctor> doctors;
+
+    for (int i = 0; i < N; i++) {
+        int id, salary;
+        string name;
+        cin >> id >> name >> salary;
+        doctors.push_back(Doctor(id, name, salary));
+    }
+
+    for (int i = 0; i < N; i++) {
+        if (doctors[i].salary >= 50000) {
+            doctors[i].display();
+        }
+    }
+
+    return 0;
+}
+2.
+
+  #include <iostream>
+using namespace std;
+
+class Wall {
+private:
+    double length;
+    double height;
+
+public:
+    Wall(double length, double height) : length(length), height(height) {}
+
+    double calculate() {
+        return (length * height) * 2;
+    }
+};
+
+int main() {
+    double length1, height1, length2, height2;
+
+    cin >> length1 >> height1;
+    cin >> length2 >> height2;
+
+    Wall wall1(length1, height1);
+    Wall wall2(length2, height2);
+
+    cout<< "Perimeter of Wall 1 : " << wall1.calculate() << endl;
+    cout<< "Perimeter of Wall 2 : " << wall2.calculate() << endl;
+
+    return 0;
+}
