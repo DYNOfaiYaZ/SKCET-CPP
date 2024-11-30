@@ -1,0 +1,99 @@
+1.
+#include <iostream>
+using namespace std;
+
+bool isSymmetric(int* matrix, int rows, int cols) {
+    if (rows != cols) return false;
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (*(matrix + i * cols + j) != *(matrix + j * cols + i)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+int main() {
+    int rows, cols;
+    cin >> rows >> cols;
+
+    int matrix[rows][cols];
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+
+    if (isSymmetric(&matrix[0][0], rows, cols)) {
+        cout << "The matrix is symmetric" << endl;
+    } else {
+        cout << "The matrix is not symmetric" << endl;
+    }
+
+    return 0;
+}
+
+2.
+#include <iostream>
+using namespace std;
+
+int main() {
+    int i, n, s, d, *x, *nm, *sum, *dg;
+    x = &i;
+    nm = &n;
+    sum = &s;
+    dg = &d;
+
+    *sum = 0;
+    cin >> *nm;
+
+    while (*nm > 0) {
+        *dg = *nm % 10;
+        if (*dg % 2 == 0) {
+            *sum += *dg;
+        }
+        *nm /= 10;
+    }
+
+    cout << *sum;
+
+    return 0;
+}
+
+3.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+    char str1[100], str2[100];
+    char *ptr1, *ptr2;
+
+    cin >> str1 >> str2;
+
+    ptr1 = str1;
+    ptr2 = str2;
+
+    bool isEqual = true;
+
+    while (*ptr1 != '\0' || *ptr2 != '\0') {
+        if (*ptr1 != *ptr2) {
+            isEqual = false;
+            break;
+        }
+        ptr1++;
+        ptr2++;
+    }
+
+    if (isEqual && *ptr1 == '\0' && *ptr2 == '\0') {
+        cout << "strings are same." << endl;
+    } else {
+        cout << "Entered strings are not equal." << endl;
+    }
+
+    return 0;
+}
+
