@@ -1,0 +1,107 @@
+1.
+void convert(int arr[], int n) {
+    vector<pair<int, int>> elementIndexPairs;
+    for (int i = 0; i < n; ++i) {
+        elementIndexPairs.push_back({arr[i], i});
+    }
+    sort(elementIndexPairs.begin(), elementIndexPairs.end());
+    vector<int> reducedArray(n);
+    for (int rank = 0; rank < n; ++rank) {
+        reducedArray[elementIndexPairs[rank].second] = rank;
+    }
+    for (int i = 0; i < n; ++i) {
+        arr[i] = reducedArray[i];
+    }
+}
+
+void printArr(const int arr[], int n) {
+    for (int i = 0; i < n; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+2.
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    if (n <= 0 || n > 15) {
+        cout << "-1";
+        return 0;
+    }
+
+    map<int, string> myMap;
+    for (int i = 0; i < n; ++i) {
+        int key;
+        string value;
+        cin >> key >> value;
+        myMap.insert({key, value});
+    }
+
+    bool found = false;
+    for (auto it = myMap.rbegin(); it != myMap.rend(); ++it) {
+        if (it->first % 2 == 0 && it->second.length() % 2 == 0) {
+            cout << "(" << it->first << ", " << it->second << ")" << endl;
+            found = true;
+        }
+    }
+
+    if (!found) {
+        cout << "0" << endl;
+    }
+
+    return 0;
+}
+3 . QUESTION ERROR
+
+4.
+#include <iostream>
+#include <vector>
+using namespace std;
+
+string checkEvenOdd(vector<int>& vec) {
+    bool allEven = true, allOdd = true;
+
+    for (auto it = vec.begin(); it != vec.end(); ++it) {
+        if (*it % 2 == 0) {
+            allOdd = false;
+        } else {
+            allEven = false;
+        }
+    }
+
+    if (allEven) {
+        return "Even";
+    } else if (allOdd) {
+        return "Odd";
+    } else {
+        return "Mixed";
+    }
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> vec;
+    for (int i = 0; i < n; ++i) {
+        int num;
+        cin >> num;
+        vec.push_back(num);
+    }
+
+    for (auto it = vec.begin(); it != vec.end(); ++it) {
+        cout << *it << " ";
+    }
+    cout << endl;
+
+    cout << checkEvenOdd(vec) << endl;
+
+    return 0;
+}
